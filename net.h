@@ -18,10 +18,6 @@ enum {server_port = 6000};
 enum {buffer_cap = 1024};
 enum {sleep_t = 10};
 enum {log = 5};
-#define INIT_MACRO(S, PORT)\
-	s.sin6_family = AF_INET6;\
-	s.sin6_port = htons(PORT);\
-	s.sin6_addr = in6addr_any;
 
 create_socket(fd, domain, type);
 bind_socket(fd, addr, slen);
