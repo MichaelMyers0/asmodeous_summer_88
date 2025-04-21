@@ -9,6 +9,10 @@
 #include <netinet/in.h>
 #include <string.h>
 /*const struct in6_addr in6addr_any = IN6ADDR_ANY_INIT;*/
+/*s.sin6_family = AF_INET;*/
+/*s.sin6_port = htons()*/
+/*s.sin6_addr = in6addr_any*/
+/*fill all thos fields manually*/
 enum {client_port = 5000};
 enum {server_port = 6000};
 enum {buffer_cap = 1024};
