@@ -8,6 +8,7 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <string.h>
+/*const struct in6_addr in6addr_any = IN6ADDR_ANY_INIT;*/
 enum {client_port = 5000};
 enum {server_port = 6000};
 enum {buffer_cap = 1024};
