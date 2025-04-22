@@ -18,6 +18,7 @@ enum {server_port = 6000};
 enum {buffer_cap = 1024};
 enum {sleep_t = 10};
 enum {log = 5};
+enum {num_of_clients_to_server = 5};
 
 create_socket(fd, domain, type);
 bind_socket(fd, addr, slen);

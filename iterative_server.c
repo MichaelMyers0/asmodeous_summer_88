@@ -1,6 +1,8 @@
 #include "net.h"
 
-main()
+main(argc, argv)
+int argc;
+char** argv;
 {
 	int sfd, iter, fd;
 	struct sockaddr_in6 s;
@@ -11,12 +13,21 @@ main()
 	s.sin6_family = AF_INET6;
 	s.sin6_port = htons(server_port);
 	s.sin6_addr = in6addr_any;
+	if (argc < 2)
+	{
+		fprintf(stderr, "ERROR: Provide number of clients to server\n");
+		exit(1);
+	}
 	create_socket(&sfd, AF_INET6, SOCK_STREAM);
 	slen = sizeof(s);
 	bind_socket(sfd, (const struct sockaddr*)&s, slen);
 	make_socket_listening(sfd, log);
 	sleep(sleep_t);
+#if 0	
 	for (iter = 0; iter < 1; iter++)
+#else
+	for (iter = 0; iter < *(argv + 1)[0] - '0'; iter++)	
+#endif		
 	{
 		accept_connection(&fd, sfd, NULL, NULL);
 		errno = 0;
