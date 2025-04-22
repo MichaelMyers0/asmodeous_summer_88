@@ -23,11 +23,7 @@ char** argv;
 	bind_socket(sfd, (const struct sockaddr*)&s, slen);
 	make_socket_listening(sfd, log);
 	sleep(sleep_t);
-#if 0	
-	for (iter = 0; iter < 1; iter++)
-#else
 	for (iter = 0; iter < *(argv + 1)[0] - '0'; iter++)	
-#endif		
 	{
 		accept_connection(&fd, sfd, NULL, NULL);
 		errno = 0;
