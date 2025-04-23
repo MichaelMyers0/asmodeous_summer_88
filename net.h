@@ -13,10 +13,10 @@
 /*s.sin6_port = htons()*/
 /*s.sin6_addr = in6addr_any*/
 /*fill all thos fields manually*/
-enum {client_port = 5000};
-enum {server_port = 6000};
+enum {client_port = 5005};
+enum {server_port = 6003};
 enum {buffer_cap = 1024};
-enum {sleep_t = 10};
+enum {sleep_t = 15};
 enum {log = 5};
 enum {num_of_clients_to_server = 5};            /*for now use values that are less than 10*/
 

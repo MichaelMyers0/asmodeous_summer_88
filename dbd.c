@@ -1,10 +1,11 @@
 #include "net.h"
-
+#include "db.h"
+static char in_buf[buffer_cap];
 main(argc, argv)
 int argc;
 char** argv;
 {
-	int sfd, iter, fd;
+	int sfd, iter, fd, pos = 0;
 	struct sockaddr_in6 s;
 	const struct in6_addr in6addr_any = IN6ADDR_ANY_INIT;
 	socklen_t slen;
@@ -13,9 +14,9 @@ char** argv;
 	s.sin6_family = AF_INET6;
 	s.sin6_port = htons(server_port);
 	s.sin6_addr = in6addr_any;
-	if (argc < 2)
+	if (argc < 3)
 	{
-		fprintf(stderr, "ERROR: Provide number of clients to server\n");
+		fprintf(stderr, "ERROR: Provide arguments\n");
 		exit(1);
 	}
 	create_socket(&sfd, AF_INET6, SOCK_STREAM);
@@ -37,10 +38,16 @@ char** argv;
 		{
 			*(buf + cnt) = 0;
 			printf("%s\n", buf);
-			*buf = 0;
+			strcpy(in_buf, buf);
+			*(in_buf + cnt) = 0;
+			data_base_connect(*(argv + 2));
+			pos = data_base_find(in_buf);
 			close(fd);
+			*buf = 0;				/*you might push an empty name*/
 		}
 	}
+	data_base_close();
+	printf("POS = %d\n%s\n", pos, in_buf + pos + 1);
 	reuse_port(sfd);
 	close_socket(sfd);
 	_exit(0);
